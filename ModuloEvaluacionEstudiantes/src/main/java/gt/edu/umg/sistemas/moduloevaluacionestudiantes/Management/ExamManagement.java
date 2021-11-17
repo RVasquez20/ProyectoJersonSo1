@@ -30,18 +30,20 @@ public class ExamManagement {
     public ExamManagement(Semaphore semaphoreWrite) {
         this.semaphoreWrite = semaphoreWrite;
     }
-/**
- * esta funcion llama a la funcion searchAndSelectQuestions para despues iterar
- * sobre cada uno de los elementos que contiene, luego con cada numero de linea
- * ira a buscar al archivo de preguntas esa misma linea y tomara la pregunta,
- * luego mostrara en pantalla la pregunta , esperara que el usuario la responda
- * y luego almacera en un objeto 
- * llamado answers la categoria el numero de linea donde esta la pregunta y 
- * la respuesta del estudiante luego verificara el estado del semaforo y si 
- * esta disponible lo bloqueara para escribir los datos almacenados en answers
- * en el archivo de respuestas, luego libera el semaforo
- * @param categorySelectedOfStudent 
- */
+
+    /**
+     * esta funcion llama a la funcion searchAndSelectQuestions para despues
+     * iterar sobre cada uno de los elementos que contiene, luego con cada
+     * numero de linea ira a buscar al archivo de preguntas esa misma linea y
+     * tomara la pregunta, luego mostrara en pantalla la pregunta , esperara que
+     * el usuario la responda y luego almacera en un objeto llamado answers la
+     * categoria el numero de linea donde esta la pregunta y la respuesta del
+     * estudiante luego verificara el estado del semaforo y si esta disponible
+     * lo bloqueara para escribir los datos almacenados en answers en el archivo
+     * de respuestas, luego libera el semaforo
+     *
+     * @param categorySelectedOfStudent
+     */
     public void testStudent(String categorySelectedOfStudent) {
         searchAndSelectQuestions(categorySelectedOfStudent);
         Answers answers = new Answers();
@@ -84,18 +86,22 @@ public class ExamManagement {
 
         }
     }
-/**
- * esta funcion recibe como parametro la categoria que el estudiante escoge
- * la cual sirve para buscar en el archivo de preguntas todos los numeros 
- * de linea que contengan esa categoria y los almacenara en una linkedlist
- * posteriormente sleccionara 3 numeros aleatorios de la anterior linkedlist 
- * mencionada y los agregara a una linkedlist llamada positionsSelectedRandom
- * @param categorySelectedOfStudent 
- */
+
+    /**
+     * esta funcion recibe como parametro la categoria que el estudiante escoge
+     * la cual sirve para buscar en el archivo de preguntas todos los numeros de
+     * linea que contengan esa categoria y los almacenara en una linkedlist
+     * posteriormente sleccionara 3 numeros aleatorios de la anterior linkedlist
+     * mencionada y los agregara a una linkedlist llamada
+     * positionsSelectedRandom
+     *
+     * @param categorySelectedOfStudent
+     */
     public void searchAndSelectQuestions(String categorySelectedOfStudent) {
         int numberOfLine = 0;
         //Process of search number of line for question with this category
         try {
+            positionsLine.clear();
             String readLine = "";
             FileReader file = new FileReader(localizationQuestions);
             BufferedReader buffOfFile = new BufferedReader(file);
@@ -112,7 +118,7 @@ public class ExamManagement {
         } catch (Exception execp) {
             System.out.println("Error :" + execp.getMessage());
         }
-
+        positionsSelectedRandom.clear();
         //process of fill linkedlist with random values of linkedlist with name positionsLine
         do {
             Random randomPositionInList = new Random();
